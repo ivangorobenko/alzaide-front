@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError} from "rxjs/operators";
+import {throwError} from "rxjs";
+import {MessageService} from "../message.service";
 
 @Component({
   selector: 'app-laisser-message',
@@ -8,12 +12,14 @@ import {FormBuilder} from '@angular/forms';
 })
 export class LaisserMessageComponent implements OnInit {
 
-  checkoutForm = this.formBuilder.group({
+  messageForm = this.formBuilder.group({
     message: '',
   });
 
   constructor(
     private formBuilder: FormBuilder,
+    private messageService: MessageService,
+
   ) {
   }
 
@@ -21,9 +27,7 @@ export class LaisserMessageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Process checkout data here
-    console.warn('Your order has been submitted', this.checkoutForm.value);
-    this.checkoutForm.reset();
+    this.messageService.sendMessage(this.messageForm.value);
   }
 
 }

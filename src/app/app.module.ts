@@ -3,22 +3,25 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {LaisserMessageComponent} from './laisser-message/laisser-message.component';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
-const routes: Routes = [
-  {path: 'message', component: LaisserMessageComponent}
-];
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path: '', component: LaisserMessageComponent},
+      {path: 'message', component: LaisserMessageComponent},
+    ]),
   ],
   declarations: [
     AppComponent,
     LaisserMessageComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

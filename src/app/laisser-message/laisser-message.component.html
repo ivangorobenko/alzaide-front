@@ -1,18 +1,10 @@
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
   <div>
-    <label for="name">
-      Name
+    <label for="message">
+      Message
     </label>
-    <input id="name" type="text" formControlName="name">
+    <input id="message" type="text" formControlName="message">
   </div>
-
-  <div>
-    <label for="address">
-      Address
-    </label>
-    <input id="address" type="text" formControlName="address">
-  </div>
-
-  <button class="button" type="submit">Purchase</button>
+  <button class="button" type="submit">Envoyer</button>
 
 </form>
