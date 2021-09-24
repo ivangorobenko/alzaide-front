@@ -27,7 +27,7 @@ export class LaisserMessageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.messageService.sendMessage(this.messageForm.value);
+    const status = this.messageService.sendMessage(this.messageForm.value);
   }
 
 }
