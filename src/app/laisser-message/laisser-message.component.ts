@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
 import {MessageService} from "../message.service";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-laisser-message',
@@ -16,18 +14,28 @@ export class LaisserMessageComponent implements OnInit {
     message: '',
   });
 
+  messages = [{contenu:"bla",timestamp:123}]
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-
+    private snackBar: MatSnackBar,
   ) {
   }
 
   ngOnInit(): void {
+    setInterval(()=>{this.messageService.getAllMessages((messages:any) => {
+      this.messages = messages;
+      console.log(this.messages)
+    },()=>undefined)},1000)
   }
 
   onSubmit(): void {
-    const status = this.messageService.sendMessage(this.messageForm.value);
+    this.messageService.sendMessage(this.messageForm.value, () => this.openSnackBar("Impossible d'envoyer un message","Fermer"));
+    this.messageForm.reset();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 
 }

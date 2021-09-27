@@ -11,10 +11,27 @@ export class MessageService {
   ) {
   }
 
+  sendMessage(message: String, errorCallback:any) {
+    this.http.put('http://localhost:8082/message', {...message}).subscribe(
+      {
+        error(msg) {
+          errorCallback();
+        }
+      }
+    )
+  }
 
-  sendMessage(message: String) {
-    this.http.put<any>('http://localhost:8082/message', {message}).subscribe((response) => ({status: response.status}),
-      (error: HttpErrorResponse) => ({status: error.status}))
+  getAllMessages(successCallback : any, errorCallback : any){
+    this.http.get('http://localhost:8082/messages').subscribe(
+      {
+        next(messages){
+         successCallback(messages)
+        },
+        error(msg) {
+          errorCallback();
+        }
+      }
+    )
   }
 
 }

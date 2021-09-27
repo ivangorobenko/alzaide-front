@@ -1,10 +1,17 @@
-<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="message">
-      Message
-    </label>
-    <input id="message" type="text" formControlName="message">
-  </div>
-  <button class="button" type="submit">Envoyer</button>
+<div>
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <div class="send-message-form">
+      <mat-form-field appearance="fill">
+        <mat-label for="message">Message</mat-label>
+        <input matInput formControlName="message">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Envoyer</button>
+    </div>
 
-</form>
+  </form>
+  <div *ngFor="let message of messages">
+    <span>{{ message.contenu }}</span>
+    <span>{{ message.timestamp | date }}</span>
+  </div>
+</div>
+
