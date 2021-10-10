@@ -1,0 +1,12 @@
+.messages {
+  margin: 10px;
+}
+
+.message {
+  height: 150px;
+  margin: 10px;
+}
+
+.message-content {
+  font-size: xx-large;
+}

@@ -1,5 +1,11 @@
-.send-message-form{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.send-message{
+  font-size: large;
+  line-height: 32px;
+  font-weight: 400;
+  width: 90%;
+}
+
+.message-text-area{
+  height: 300px;
+  width: 100%;
 }

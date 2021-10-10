@@ -1,0 +1,8 @@
+<mat-toolbar class="header" color="primary" fxLayout="column " fxLayoutAlign="center center">
+  <h1 class="time" fxLayout>
+    {{time | date:'EEEE, d MMMM y' : ''}}
+  </h1>
+  <h1 class="time" >
+    {{time | date:'hh:mm:ss' : ''}}
+  </h1>
+</mat-toolbar>

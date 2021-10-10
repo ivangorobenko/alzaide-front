@@ -1,17 +1,9 @@
-<div>
-  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-    <div class="send-message-form">
-      <mat-form-field appearance="fill">
-        <mat-label for="message">Message</mat-label>
-        <input matInput formControlName="message">
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Envoyer</button>
-    </div>
-
-  </form>
-  <div *ngFor="let message of messages">
-    <span>{{ message.contenu }}</span>
-    <span>{{ message.timestamp | date }}</span>
-  </div>
-</div>
-
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field appearance="fill" class="send-message">
+    <mat-label for="message">Message</mat-label>
+    <textarea cdkTextareaAutosize
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="10" css="message-text-area" matInput name="message" ngModel required></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Envoyer</button>
+</form>

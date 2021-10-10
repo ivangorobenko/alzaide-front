@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {MessageService} from "../message.service";
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {LaisserMessageService} from "./laisser-message.service";
 
 @Component({
   selector: 'app-laisser-message',
@@ -10,28 +10,20 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class LaisserMessageComponent implements OnInit {
 
-  messageForm = this.formBuilder.group({
-    message: '',
-  });
+  messages = [{contenu: "", timestamp: undefined}]
 
-  messages = [{contenu:"bla",timestamp:123}]
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
+    private laisserMessage: LaisserMessageService,
     private snackBar: MatSnackBar,
   ) {
   }
 
   ngOnInit(): void {
-    setInterval(()=>{this.messageService.getAllMessages((messages:any) => {
-      this.messages = messages;
-      console.log(this.messages)
-    },()=>undefined)},1000)
   }
 
-  onSubmit(): void {
-    this.messageService.sendMessage(this.messageForm.value, () => this.openSnackBar("Impossible d'envoyer un message","Fermer"));
-    this.messageForm.reset();
+  onSubmit(f: any): void {
+    this.laisserMessage.laisser(f.value.message, () => this.openSnackBar("Impossible d'envoyer un message", "Fermer"));
   }
 
   openSnackBar(message: string, action: string) {

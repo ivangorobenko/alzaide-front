@@ -1,0 +1,20 @@
+.tableau-de-bord {
+  padding: 30px;
+}
+
+.messages {
+  margin: 20px;
+}
+
+.message {
+  margin: 10px;
+}
+
+.titre-messages {
+  margin: 10px;
+}
+
+.message-text-area {
+  height: 300px;
+  width: 100%;
+}
